@@ -1,0 +1,37 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Unity #
+#########
+[Ll]ibrary
+[Tt]emp
+[Bb]uilds
+*.unityproj
+
+# Visual Studio #
+#################
+[Oo]bj
+*.sln
+*.csproj
+*.suo
+*.userprefs
+*.pidb
+.vs
+
+# Rider #
+#########
+.idea
+
+# ProceduralToolkit #
+#####################
+Assets/ProceduralToolkit
+Assets/ProceduralToolkit.meta
+Assets/ProceduralToolkit.Tests
+Assets/ProceduralToolkit.Tests.meta
