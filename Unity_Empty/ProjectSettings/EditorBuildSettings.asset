@@ -4,34 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Breakout/Breakout.unity
-    guid: ea90af1f2cf2d384797ae3caee03c192
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Buildings/Buildings.unity
-    guid: 71b132047b3f1fb4eb7c48750ef1f94e
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/CellularAutomata/CellularAutomata.unity
-    guid: ab1f52fc3d080eb43966cf9adc304e16
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Chairs/Chairs.unity
-    guid: 54a30817e1e8cca4184e667e5639da83
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Characters/Characters.unity
-    guid: bdabe7f6e7e68b04ab7638d44c531460
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Drawing/Drawing.unity
-    guid: 8f29cd44a39323d48b4b0b3d7f530c24
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/LowPolyTerrain/LowPolyTerrain.unity
-    guid: e78a2dd744dd4f64983fea4178fdb8ba
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Mazes/Mazes.unity
-    guid: 5c3dde0c1895f234c93c4e470b16a616
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/Primitives/Primitives.unity
-    guid: 5d326c8dbafee4f42bf494fd83426bbf
-  - enabled: 1
-    path: Assets/ProceduralToolkit/Examples/SDF/SDF.unity
-    guid: d2992b3ad93fcbb4fab4c8f77602e1bf
+  m_Scenes: []
+  m_configObjects: {}
