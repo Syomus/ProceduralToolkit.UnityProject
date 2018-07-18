@@ -35,3 +35,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProceduralToolkit/Examples/SDF/SDF.unity
     guid: d2992b3ad93fcbb4fab4c8f77602e1bf
+  m_configObjects: {}
