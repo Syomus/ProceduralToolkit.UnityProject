@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using UnityEditor;
+using ProceduralToolkit.Editor;
 
 public static class Builder
 {
@@ -81,7 +82,7 @@ public static class Builder
             string scenePath = AssetDatabase.GetAssetPath(scene);
 
             SetTemplateTag(sceneNameTag, scene.name);
-            SetTemplateTag(versionTag, ProceduralToolkit.Editor.ProceduralToolkitMenu.version);
+            SetTemplateTag(versionTag, ProceduralToolkitMenu.version);
 
             string buildPath = Path.Combine(buildFolder, scene.name);
 

@@ -13,6 +13,7 @@ Thumbs.db
 Unity_*/[Ll]ibrary
 Unity_*/[Tt]emp
 Unity_*/[Bb]uilds
+Unity_*/[Ll]ogs
 *.unityproj
 
 # Visual Studio #
@@ -31,7 +32,4 @@ Unity_*/[Bb]uilds
 
 # ProceduralToolkit #
 #####################
-Unity_ProceduralToolkit/Assets/ProceduralToolkit
-Unity_ProceduralToolkit/Assets/ProceduralToolkit.meta
-Unity_ProceduralToolkit/Assets/ProceduralToolkit.Tests
-Unity_ProceduralToolkit/Assets/ProceduralToolkit.Tests.meta
+Unity_ProceduralToolkit/Packages/com.syomus.proceduraltoolkit
