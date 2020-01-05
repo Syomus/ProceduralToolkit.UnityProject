@@ -1,8 +1,11 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
-using ProceduralToolkit.Editor;
+using UnityEditor.PackageManager;
+using UnityEditor.PackageManager.Requests;
+using UnityEngine;
 
 public static class Builder
 {
@@ -11,6 +14,10 @@ public static class Builder
     private const string webglBuildFolderKey = "PT_WebGL_BuildFolder";
     private const string androidBuildFolderKey = "PT_Android_BuildFolder";
     private const string iosBuildFolderKey = "PT_iOS_BuildFolder";
+    private const string packageName = "com.syomus.proceduraltoolkit";
+
+    private static string buildFolder;
+    private static ListRequest listRequest;
 
     [MenuItem("Procedural Toolkit/Build Android")]
     public static void BuildAndroid()
@@ -69,7 +76,7 @@ public static class Builder
     [MenuItem("Assets/Build scene(s)", priority = 0)]
     public static void BuildScene()
     {
-        string buildFolder = GetBuildFolder(webglBuildFolderKey, "PTGitHubPages");
+        buildFolder = GetBuildFolder(webglBuildFolderKey, "PTGitHubPages");
         if (string.IsNullOrEmpty(buildFolder))
         {
             return;
@@ -77,41 +84,61 @@ public static class Builder
 
         EditorUtility.DisplayProgressBar("Building...", null, 0);
 
-        foreach (var scene in Selection.objects)
+        listRequest = Client.List();
+        EditorApplication.update += BuildSceneContinue;
+    }
+
+    private static void BuildSceneContinue()
+    {
+        if (listRequest.IsCompleted)
         {
-            string scenePath = AssetDatabase.GetAssetPath(scene);
+            EditorApplication.update -= BuildSceneContinue;
 
-            SetTemplateTag(sceneNameTag, scene.name);
-            SetTemplateTag(versionTag, ProceduralToolkitMenu.version);
-
-            string buildPath = Path.Combine(buildFolder, scene.name);
-
-            var directoryInfo = new DirectoryInfo(buildPath);
-            if (!directoryInfo.Exists)
+            if (listRequest.Status == StatusCode.Success)
             {
-                directoryInfo.Create();
+                var package = listRequest.Result.ToList().Find(p => p.name == packageName);
+                SetTemplateTag(versionTag, package.version);
+
+                foreach (var scene in Selection.objects)
+                {
+                    string scenePath = AssetDatabase.GetAssetPath(scene);
+
+                    SetTemplateTag(sceneNameTag, scene.name);
+
+                    string buildPath = Path.Combine(buildFolder, scene.name);
+
+                    var directoryInfo = new DirectoryInfo(buildPath);
+                    if (!directoryInfo.Exists)
+                    {
+                        directoryInfo.Create();
+                    }
+                    foreach (var info in directoryInfo.GetFiles())
+                    {
+                        info.Delete();
+                    }
+                    foreach (var info in directoryInfo.GetDirectories())
+                    {
+                        info.Delete(true);
+                    }
+
+                    BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                    {
+                        target = BuildTarget.WebGL,
+                        locationPathName = buildPath,
+                        scenes = new[] {scenePath},
+                    });
+                }
             }
-            foreach (var info in directoryInfo.GetFiles())
+            else
             {
-                info.Delete();
-            }
-            foreach (var info in directoryInfo.GetDirectories())
-            {
-                info.Delete(true);
+                Debug.Log(listRequest.Error.message);
             }
 
-            BuildPipeline.BuildPlayer(new BuildPlayerOptions
-            {
-                target = BuildTarget.WebGL,
-                locationPathName = buildPath,
-                scenes = new[] {scenePath},
-            });
+            SetTemplateTag(sceneNameTag, "");
+            SetTemplateTag(versionTag, "");
+
+            EditorUtility.ClearProgressBar();
         }
-
-        SetTemplateTag(sceneNameTag, "");
-        SetTemplateTag(versionTag, "");
-
-        EditorUtility.ClearProgressBar();
     }
 
     private static string GetBuildFolder(string key, string defaultName)
