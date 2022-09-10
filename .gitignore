@@ -14,6 +14,7 @@ Unity_*/[Ll]ibrary
 Unity_*/[Tt]emp
 Unity_*/[Bb]uilds
 Unity_*/[Ll]ogs
+UserSettings
 *.unityproj
 
 # Visual Studio #
@@ -25,6 +26,8 @@ Unity_*/[Ll]ogs
 *.userprefs
 *.pidb
 .vs
+*.DotSettings.user
+.vsconfig
 
 # Rider #
 #########
