@@ -12,25 +12,28 @@ Thumbs.db
 #########
 Unity_*/[Ll]ibrary
 Unity_*/[Tt]emp
+Unity_*/[Bb]uild
 Unity_*/[Bb]uilds
 Unity_*/[Ll]ogs
-UserSettings
+Unity_*/[Uu]ser[Ss]ettings
+Unity_*/[Mm]emory[Cc]aptures
 *.unityproj
 
 # Visual Studio #
 #################
-[Oo]bj
-*.sln
+Unity_*/[Oo]bj
+Unity_*/.vs
 *.csproj
+*.sln
+*.slnx
 *.suo
 *.userprefs
 *.pidb
-.vs
-*.DotSettings.user
 .vsconfig
 
 # Rider #
 #########
+*.DotSettings.user
 .idea
 
 # ProceduralToolkit #
